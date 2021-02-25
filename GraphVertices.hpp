@@ -28,20 +28,25 @@ class Vertex {
         void decreaseOutDegree(); // Menghilangkan out degree
         void decreaseInDegree(); // Mengurangkan inDegree sebanyak 1
         void removeVertices();
+        bool operator==(Vertex const& V);
         int getInDegree();
         int getOutDegree();
+        string getName();
 };
 
 class Graph {
     private:
         int verticesCount;
-        list<Vertex*> VList; // Maybe use pointers?
+        vector<Vertex*> VList;
+        // list<Vertex*> VList; // Maybe use pointers?
         vector<vector<Vertex*>> sortedVertex;
     public:
         Graph();
         // Graph(int inDegree, int outDegree, vector<Vertices> outVertices);
         void operator<<(Vertex* vertex);
+        void removeVertex(string name);
         void topoSort();
+        void print();
         int getCount();
 };
 

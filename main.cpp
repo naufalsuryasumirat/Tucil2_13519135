@@ -4,7 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <iterator>
-// #include "GraphVertices.hpp"
+#include "GraphVertices.hpp"
 
 using namespace std;
 
@@ -47,5 +47,18 @@ int main() {
         }
     }
 
+    Vertex a("C1");
+    Vertex b("C2");
+    a.printInfo();
+    b.printInfo();
+
+    a>>(&b);
+    a.printInfo();
+    b.printInfo();
+
+    a.removeVertices();
+    a.printInfo();
+    b.printInfo();
+    
     return 0;
 }
