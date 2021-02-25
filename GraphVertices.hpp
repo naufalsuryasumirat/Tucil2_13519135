@@ -19,7 +19,6 @@ class Vertex {
         vector<Vertex*> outVectors; // Definitely use pointers
     public:
         Vertex(string name); // Konstruktor
-        // ~Vertex();
         void operator>>(Vertex* vertex); // Menambahkan outDegree
         void printName(); // Menampilkan nama
         void printInfo(); // Menampilkan info
@@ -43,6 +42,7 @@ class Graph {
     public:
         Graph();
         // Graph(int inDegree, int outDegree, vector<Vertices> outVertices);
+        void checkVList();
         void operator<<(Vertex* vertex);
         void removeVertex(string name);
         void topoSort();

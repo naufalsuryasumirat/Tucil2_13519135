@@ -5,6 +5,8 @@
 #include <iterator>
 #include "GraphVertices.hpp"
 
+#define TEST cout << "TEST" << endl;
+
 using namespace std;
 
 Vertex::Vertex(string name) {
@@ -89,10 +91,17 @@ Graph::Graph() {
     this->verticesCount = 0;
 }
 
+void Graph::checkVList() {
+    for (vector<Vertex*>::iterator i = this->VList.begin(); i != this->VList.end(); i++) {
+        (*i)->printInfo();
+        cout << "------" << endl;
+    }
+}
+
 void Graph::operator<<(Vertex* vertex) {
     bool found = false; //// check lagi ntar
     for (vector<Vertex*>::iterator i = this->VList.begin(); i != this->VList.end(); i++) {
-        if (*i == vertex) {
+        if ((*i)->getName() == vertex->getName()) {
             found = true;
             break;
         }
@@ -107,6 +116,7 @@ void Graph::removeVertex(string name) {
     for (vector<Vertex*>::iterator i = this->VList.begin(); i != this->VList.end(); i++) {
         if (name == (*i)->getName()) {
             this->VList.erase(i);
+            this->verticesCount -= 1;
             break;
         }
     }
@@ -116,22 +126,25 @@ void Graph::topoSort() {
     while (this->verticesCount > 0) {
         bool a_zero = false; // indikator ada satu vertex dengan edge masuk ke simpul tersebut = 0
         vector<Vertex*> toAdd;
-        int countZeroIns = 0;
         for (vector<Vertex*>::iterator i = this->VList.begin(); i != this->VList.end(); i++) {
             if ((*i)->getInDegree() == 0) {
                 toAdd.push_back(*i);
-                countZeroIns++;
+                a_zero = true;
+                // TEST
             }
         }
-        if (countZeroIns > 0) {
+        if (a_zero) {
             for (vector<Vertex*>::iterator i = toAdd.begin(); i != toAdd.end(); i++) {
                 (*i)->removeVertices();
                 removeVertex((*i)->getName());
+                this->sortedVertex.push_back(toAdd); //////CHECK
+                // TEST
             }
         }
-        else {
+        else { //// KASUS ACYCLIC GRAPPH BEGINI???
             toAdd.clear();
             this->sortedVertex.clear();
+            // TEST
             break;
         }
     }
@@ -139,10 +152,17 @@ void Graph::topoSort() {
 
 void Graph::print() {
     int count = 1;
-    for (vector<vector<Vertex*>>::iterator i = this->sortedVertex.begin(); i != this->sortedVertex.end(); i++) {
-        cout << "S" << count << endl;
-        for (vector<Vertex*>::iterator j = i->begin(); j != i->end(); j++) {
-            cout << (*j)->getName() << endl;
+    if (this->sortedVertex.empty()) {
+        cout << "Input tidak valid atau Graph bukan merupakan Graph acyclic." << endl;
+    }
+    else {
+        for (vector<vector<Vertex*>>::iterator i = this->sortedVertex.begin(); i != this->sortedVertex.end(); i++) {
+            cout << "S" << count << endl;
+            for (vector<Vertex*>::iterator j = i->begin(); j != i->end(); j++) {
+                cout << (*j)->getName() << endl;
+                // TEST
+            }
+            count++;
         }
     }
 }
