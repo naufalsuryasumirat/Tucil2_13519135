@@ -2,3 +2,10 @@ main.exe
 *.txt
 test/
 topoSort.py
+backup_with_destructor/
+readfile.cpp
+readfile.exe
+mainn
+*.sh
+*.exe
+backup2/

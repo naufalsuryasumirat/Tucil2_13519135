@@ -2,6 +2,11 @@
     "files.associations": {
         "*.pl": "prolog",
         "vector": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "list": "cpp",
+        "initializer_list": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "filesystem": "cpp"
     }
 }
