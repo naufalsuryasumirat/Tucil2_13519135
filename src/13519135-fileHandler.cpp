@@ -6,8 +6,8 @@
 #include <vector>
 #include <iterator>
 #include <fstream>
-#include "fileHandler.hpp"
-#include "GraphVertices.hpp"
+#include "13519135-fileHandler.hpp"
+#include "13519135-GraphVertices.hpp"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ using namespace std;
 //      yang lengkap dari soal (sudah terisi out-edge tiap vertex)
 fileHandler::fileHandler(string name) {
     this->filename = name;
-    ifstream file("./test/" + this->filename + ".txt");
+    ifstream file("../test/" + this->filename + ".txt");
     string str;
     vector<string> lines;
     while (getline(file, str)) { // Membaca tiap line pada file

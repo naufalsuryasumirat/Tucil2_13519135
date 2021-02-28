@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <iterator>
-#include "GraphVertices.hpp"
+#include "13519135-GraphVertices.hpp"
 
 #define TEST cout << "TEST" << endl;
 #define LINE cout << "---------------------------" << endl;
@@ -159,7 +159,13 @@ void Graph::print() {
         cout << "Input tidak valid atau Graph bukan merupakan Graph acyclic." << endl;
     }
     else {
+        cout << endl;
+        cout << "Mata kuliah yang diambil:" << endl;
         for (vector<vector<Vertex*>>::iterator i = this->sortedVertex.begin(); i != this->sortedVertex.end(); i++) {
+            if (count > 8) {
+                cout << "Mata kuliah yang diambil lebih dari 8 semester, diperlihatkan hanya sampai semester 8" << endl;
+                break;
+            }
             cout << "Semester " << count << ": ";
             for (vector<Vertex*>::iterator j = i->begin(); j != i->end(); j++) {
                 if (j < i->end() - 1) {
@@ -171,6 +177,7 @@ void Graph::print() {
             }
             count++;
         }
+        cout << endl;
     }
 }
 
